@@ -1,0 +1,76 @@
+﻿@model UbicacionViewModel
+@{
+    ViewData["Title"] = "Selección de ubicación";
+}
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <form>
+            <div class="card mt-3">
+                <div class="card-header">
+                    Datos de localización
+                </div>
+                <div class="card-body contenedor-mapa">
+                    <div class="mb-3">
+                        <label asp-for="Localizador" class="form-label"></label>
+                        <input asp-for="Localizador" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Latitud" class="form-label"></label>
+                        <input asp-for="Latitud" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Longitud" class="form-label"></label>
+                        <input asp-for="Longitud" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Distancia" class="form-label"></label>
+                        <input asp-for="Distancia" readonly class="form-control-plaintext fw-bold" placeholder="Calculando...">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Tiempo" class="form-label"></label>
+                        <input asp-for="Tiempo" readonly class="form-control-plaintext fw-bold">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Transporte" class="form-label"></label>
+                        <select asp-for="Transporte" asp-items="Model.Transportes" class="form-select">
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <label asp-for="Ruta" class="form-label"></label>
+                            <input asp-for="Ruta" class="form-check-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    Ingrese el nombre de la ubicación o las coordenadas para verlo en el mapa.
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <div class="card mt-3">
+            <div class="card-header">
+                Mapa
+            </div>
+            <div class="card-body contenedor-mapa">
+                <div id="mapa" class="h-100"></div>
+            </div>
+            <div class="card-footer text-center">
+                Seleccione un lugar moviendo el marcador rojo a una ubicación.
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/ubicacion.css" asp-append-version="true" />
+}
+
+@section Scripts {
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN3vjtO_5CHpPTAIVpygowsC4sjptPESE&libraries=places&callback=&callback=console.debug"></script>
+    <script src="~/js/locationpicker.js"></script>
+    <script src="~/js/ubicacion.js"></script>
+}
